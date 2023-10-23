@@ -19,7 +19,7 @@ public class BallMovement : MonoBehaviour
     [SerializeField] private float gumForce = 0.7f;
 
     private Vector3 mousePos;
-    private Rigidbody rb;
+    protected Rigidbody rb;
     private bool isSliding;
     private float mousePressedTime;
     private float mouseReleasedTime;
@@ -27,7 +27,7 @@ public class BallMovement : MonoBehaviour
     
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         rb = GetComponent<Rigidbody>();
     }

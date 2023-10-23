@@ -102,6 +102,8 @@ MonoBehaviour:
   rightBorder: 1.6
   horizontalSpeed: 2
   maxForce: 20
+  bananaForce: 5
+  gumForce: 0.2
 --- !u!54 &8706089409560697017
 Rigidbody:
   m_ObjectHideFlags: 0

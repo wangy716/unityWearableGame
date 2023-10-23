@@ -12,11 +12,19 @@ public class BallMovement : MonoBehaviour
     [SerializeField] private float horizontalSpeed = 5f;
     [SerializeField] private float maxForce = 50f;
 
+    [Header("Banana")]
+    [SerializeField] private float bananaForce = 5f;
+
+    [Header("Gum")]
+    [SerializeField] private float gumForce = 0.7f;
+
     private Vector3 mousePos;
     private Rigidbody rb;
     private bool isSliding;
     private float mousePressedTime;
     private float mouseReleasedTime;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -52,5 +60,28 @@ public class BallMovement : MonoBehaviour
 
         }
 
+        if(transform.position.y < -1f)
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Banana"))
+        {
+            rb.AddForce(new Vector3(Random.Range(-0.5f, 0.5f), 0, 1) * bananaForce, ForceMode.Impulse);
+        }
+
+        if (other.CompareTag("Gum"))
+        {
+            rb.velocity *= gumForce;
+        }
+
+        if (other.CompareTag("Trap"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

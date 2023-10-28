@@ -57,7 +57,6 @@ public class BallMovement : MonoBehaviour
             float shootForce = Mathf.Clamp((mouseReleasedTime - mousePressedTime) * maxForce, 0, maxForce);
             rb.AddForce(Vector3.forward * shootForce, ForceMode.Impulse);
             isSliding = true;
-
         }
 
         if(transform.position.y < -1f)
@@ -72,6 +71,12 @@ public class BallMovement : MonoBehaviour
         if(other.CompareTag("Banana"))
         {
             rb.AddForce(new Vector3(Random.Range(-0.5f, 0.5f), 0, 1) * bananaForce, ForceMode.Impulse);
+        }
+
+        if (other.CompareTag("BananaMove"))
+        {
+            float bananaJump = 5f;
+            rb.AddForce(Vector3.up * bananaJump);
         }
 
         if (other.CompareTag("Gum"))

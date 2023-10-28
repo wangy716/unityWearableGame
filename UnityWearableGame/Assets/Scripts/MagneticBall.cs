@@ -14,10 +14,14 @@ public class MagneticBall : BallMovement
         {
             if (ball != gameObject && ball.tag != "PlasticBall")  // Check if the ball is not a plastic ball
             {
-                Vector3 direction = ball.transform.position - transform.position;
-                float distance = direction.magnitude;
-                Vector3 force = direction.normalized * magneticForce / distance;
-                ball.GetComponent<Rigidbody>().AddForce(-force);
+                Rigidbody ballRb = ball.GetComponent<Rigidbody>();
+                if (ballRb != null)  // Check if the Rigidbody component is attached
+                {
+                    Vector3 direction = ball.transform.position - transform.position;
+                    float distance = direction.magnitude;
+                    Vector3 force = direction.normalized * magneticForce / (distance * distance);  // Use inverse square law for magnetic force
+                    ballRb.AddForce(-force);
+                }
             }
         }
     }

@@ -9,6 +9,9 @@ TagManager:
   - Trap
   - BananaMove
   - Ball
+  - ScoringArea1
+  - ScoringArea2
+  - ScoringArea3
   layers:
   - Default
   - TransparentFX

@@ -97,14 +97,16 @@ public class ReplaySystem : MonoBehaviour
             orthographicCamera.gameObject.SetActive(true);
             mainCamera.gameObject.SetActive(false);
             ballCamera.gameObject.SetActive(false);
-
-            
-            yield return null;
         }
+
+        float replayDuration = 3f;  // Set a fixed duration for the replay
+        float startTime = Time.time;
 
         List<GameObject> gameObjectsCopy = new List<GameObject>(gameObjectsToReplay);  // Create a copy of the list
         foreach (ReplayRecorder.FrameData frameData in recordedFrames)
         {
+            if (Time.time - startTime > replayDuration) break;  // Break the loop if the replay duration has passed
+
             for (int i = 0; i < gameObjectsCopy.Count; i++)  // Iterate over the copy of the list
             {
                 if (i < frameData.objectDataList.Count)
@@ -116,17 +118,14 @@ public class ReplaySystem : MonoBehaviour
             yield return null;
         }
 
-        // Switch back to main camera
+        // Switch back to main camera after the fixed duration has passed
         mainCamera.gameObject.SetActive(true);
         orthographicCamera.gameObject.SetActive(false);
         ballCamera.gameObject.SetActive(false);
 
-        
-
-       // replayRecorder.ClearRecordedFrames(); // Clear recorded frames after replay
-       // replayRecorder.ClearGameObjectsToRecord(); // Clear the list of game objects to record
         isReplaying = false;
 
         currentPlayer.isShooting = false;
     }
+
 }

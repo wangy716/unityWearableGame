@@ -38,6 +38,9 @@ public class Player : MonoBehaviour
     private float keyPressedTime;
     private float keyReleasedTime;
 
+    [Header("Sound Effects")]
+    public AudioSource shootingSound;
+
     private void Update()
     {
         if (isSelectingBall)
@@ -68,8 +71,7 @@ public class Player : MonoBehaviour
                     isSelectingBall = false;
                     isShooting = true;
                     cameraFollow.selectedOne = selectedBallInstance;
-                    
-                    
+                    shootingSound.Play();
                 }
             }
             else if (Input.GetKeyUp(KeyCode.Alpha2))
@@ -81,7 +83,8 @@ public class Player : MonoBehaviour
                     points--;
                     isSelectingBall = false;
                     isShooting = true;
-                    cameraFollow.selectedOne = selectedBallInstance;  
+                    cameraFollow.selectedOne = selectedBallInstance;
+                    shootingSound.Play();
                 }
             }
             else if (Input.GetKeyUp(KeyCode.Alpha3))
@@ -94,6 +97,7 @@ public class Player : MonoBehaviour
                     isSelectingBall = false;
                     isShooting = true;
                     cameraFollow.selectedOne = selectedBallInstance;
+                    shootingSound.Play();
                 }
             }
         } else
@@ -133,6 +137,7 @@ public class Player : MonoBehaviour
                     isSelectingBall = false;
                     isShooting = true;
                     cameraFollow.selectedOne = selectedItemInstance;
+                    shootingSound.Play();
                 }
             }
             else if (Input.GetKeyUp(KeyCode.Alpha5))
@@ -145,6 +150,7 @@ public class Player : MonoBehaviour
                     isSelectingBall = false;
                     isShooting = true;
                     cameraFollow.selectedOne = selectedItemInstance;
+                    shootingSound.Play();
                 }
             }
             else if (Input.GetKeyUp(KeyCode.Alpha6))
@@ -157,10 +163,12 @@ public class Player : MonoBehaviour
                     isSelectingBall = false;
                     isShooting = true;
                     cameraFollow.selectedOne = selectedItemInstance;
+                    shootingSound.Play();
                 }
             }
         }
     }
+
 
     public void SelectBall(GameObject ballPrefab)
     {

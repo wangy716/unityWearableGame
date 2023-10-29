@@ -16,6 +16,9 @@ public class ReplaySystem : MonoBehaviour
     [SerializeField] private float orthographicCameraSpeed = 1f; // Adjust this value to change the speed of the camera movement
     [SerializeField] private Vector3 orthographicCameraStartPosition;
 
+    [Header("Player")]
+    public Player currentPlayer;
+
     private ReplayRecorder replayRecorder;
     private bool isReplaying;
 
@@ -118,8 +121,12 @@ public class ReplaySystem : MonoBehaviour
         orthographicCamera.gameObject.SetActive(false);
         ballCamera.gameObject.SetActive(false);
 
+        
+
        // replayRecorder.ClearRecordedFrames(); // Clear recorded frames after replay
        // replayRecorder.ClearGameObjectsToRecord(); // Clear the list of game objects to record
         isReplaying = false;
+
+        currentPlayer.isShooting = false;
     }
 }

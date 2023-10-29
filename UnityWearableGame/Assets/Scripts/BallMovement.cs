@@ -18,6 +18,9 @@ public class BallMovement : MonoBehaviour
     [Header("Gum")]
     [SerializeField] private float gumForce = 0.7f;
 
+    private GameObject playerGO;
+    private Player playerNow;
+
     private Vector3 mousePos;
     protected Rigidbody rb;
     private bool isSliding;
@@ -30,6 +33,8 @@ public class BallMovement : MonoBehaviour
     protected void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerGO = GameObject.Find("Players");
+        playerNow = playerGO.GetComponent<PlayerChange>().currentPlayer;
     }
 
     // Update is called once per frame
@@ -45,13 +50,13 @@ public class BallMovement : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, new Vector3(mousePos.x, transform.position.y, transform.position.z), Time.deltaTime * horizontalSpeed);
         }
         
-        if(Input.GetMouseButtonDown(0) && !isSliding)
+        if(Input.GetMouseButtonDown(0) && !isSliding && playerNow.isShooting)
         {
             
             mousePressedTime = Time.time;   
         }
 
-        if(Input.GetMouseButtonUp(0) && !isSliding)
+        if(Input.GetMouseButtonUp(0) && !isSliding && playerNow.isShooting)
         {
             mouseReleasedTime = Time.time;
             float shootForce = Mathf.Clamp((mouseReleasedTime - mousePressedTime) * maxForce, 0, maxForce);

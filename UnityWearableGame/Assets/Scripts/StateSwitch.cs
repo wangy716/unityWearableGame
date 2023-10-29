@@ -16,7 +16,7 @@ public class StateSwitch : MonoBehaviour
     [Header("Current State")]
     public bool currentBallState;
     public bool toItem;
-    private bool toBall;
+    public bool toBall;
 
     [Header("Player Switch")]
     public int usablePointA = 5;
@@ -65,6 +65,7 @@ public class StateSwitch : MonoBehaviour
         {
             currentState.text = "Choose Your Item";
             StartCoroutine(ColorChange(ballColor, itemColor));
+            toItem = false;
             currentBallState = false;
         }
 

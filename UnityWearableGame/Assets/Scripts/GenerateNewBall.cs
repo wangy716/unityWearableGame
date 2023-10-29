@@ -51,16 +51,16 @@ public class GenerateNewBall : MonoBehaviour
 
     private void InstantiateBall()
     {
-        Debug.Log("Trying to instantiate a new ball...");
+        //Debug.Log("Trying to instantiate a new ball...");
         if (!replayRecorder.IsReplaying)  // Check if a replay is in progress
         {
-            Debug.Log("Instantiating a new ball...");
+            //Debug.Log("Instantiating a new ball...");
             GameObject newBall = Instantiate(selectedBallPrefab, transform.position, Quaternion.identity, transform);
             replayRecorder.AddGameObjectToRecord(newBall);  // Add the new ball to the list of game objects to record
 
             // Debug logs to check ball's position and scale
-            Debug.Log("New ball position: " + newBall.transform.position);
-            Debug.Log("New ball scale: " + newBall.transform.localScale);
+            //Debug.Log("New ball position: " + newBall.transform.position);
+            //Debug.Log("New ball scale: " + newBall.transform.localScale);
         }
         else
         {

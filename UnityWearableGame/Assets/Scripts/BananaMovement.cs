@@ -5,12 +5,12 @@ using UnityEngine;
 public class BananaMovement : MonoBehaviour
 {
     [Header("Banana Position")]
-    [SerializeField] private float leftBorder;
-    [SerializeField] private float rightBorder;
+    [SerializeField] private float leftBorderBanana;
+    [SerializeField] private float rightBorderBanana;
 
     [Header("Banana Movement")]
-    [SerializeField] private float horizontalSpeed = 5f;
-    [SerializeField] private float maxForce = 50f;
+    [SerializeField] private float horizontalSpeedBanana = 5f;
+    [SerializeField] private float maxForceBanana = 50f;
 
     private Vector3 mousePos;
     private Rigidbody rb;
@@ -18,14 +18,9 @@ public class BananaMovement : MonoBehaviour
     private float mousePressedTime;
     private float mouseReleasedTime;
 
-    private GameObject playerGO;
-    private Player playerNow;
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        playerGO = GameObject.Find("Players");
-        playerNow = playerGO.GetComponent<PlayerChange>().currentPlayer;
     }
 
     // Update is called once per frame
@@ -33,28 +28,31 @@ public class BananaMovement : MonoBehaviour
     {
         if (isSliding)
         {
-            if (GetComponent<Rigidbody>().velocity.magnitude < 0.01f && playerNow.points > 0)
+            transform.gameObject.tag = "BananaMove";
+            
+            if (rb.velocity.z == 0)
             {
-                playerNow.isSelectingItem = true;
+                transform.gameObject.tag = "Banana";
+                isSliding = false;
             }
         }
         else
         {
             mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));
-            mousePos.x = Mathf.Clamp(mousePos.x, leftBorder, rightBorder);
-            transform.position = Vector3.Lerp(transform.position, new Vector3(mousePos.x, transform.position.y, transform.position.z), Time.deltaTime * horizontalSpeed);
+            mousePos.x = Mathf.Clamp(mousePos.x, leftBorderBanana, rightBorderBanana);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(mousePos.x, transform.position.y, transform.position.z), Time.deltaTime * horizontalSpeedBanana);
         }
 
-        if (Input.GetMouseButtonDown(0) && !isSliding && playerNow.isShooting)
+        if (Input.GetMouseButtonDown(0) && !isSliding)
         {
 
             mousePressedTime = Time.time;
         }
 
-        if (Input.GetMouseButtonUp(0) && !isSliding && playerNow.isShooting)
+        if (Input.GetMouseButtonUp(0) && !isSliding)
         {
             mouseReleasedTime = Time.time;
-            float shootForce = Mathf.Clamp((mouseReleasedTime - mousePressedTime) * maxForce, 0, maxForce);
+            float shootForce = Mathf.Clamp((mouseReleasedTime - mousePressedTime) * maxForceBanana, 0, maxForceBanana);
             rb.AddForce(Vector3.forward * shootForce, ForceMode.Impulse);
             isSliding = true;
         }

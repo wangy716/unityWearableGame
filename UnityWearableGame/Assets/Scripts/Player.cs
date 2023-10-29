@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public int points = 5;
     public int score = 0;
     private bool isSelectingBall = true;
-    public bool isSelectingItem = false;
+    private bool isSelectingItem = false;
 
     [SerializeField] private float startZ = -5.84f;
 
@@ -31,9 +31,6 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject GumPrefab;
     [SerializeField] private GameObject HolePrefab;
 
-    [Header("Player Change")]
-    public PlayerChange playerChange;
-
     private GameObject selectedItemPrefab;
     private GameObject selectedItemInstance;
 
@@ -41,10 +38,8 @@ public class Player : MonoBehaviour
     private float keyPressedTime;
     private float keyReleasedTime;
 
-
     [Header("Sound Effects")]
     public AudioSource shootingSound;
-
 
     private void Update()
     {
@@ -118,19 +113,16 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                isShooting = false;
                 SelectItem(BananaPrefab);
                 keyPressedTime = Time.time;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha5))
             {
-                isShooting = false;
                 SelectItem(GumPrefab);
                 keyPressedTime = Time.time;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha6))
             {
-                isShooting = false;
                 SelectItem(HolePrefab);
                 keyPressedTime = Time.time;
             }
@@ -142,12 +134,10 @@ public class Player : MonoBehaviour
                 if (keyInterval > 2f)
                 {
                     points--;
-                    isSelectingItem = false;
                     isSelectingBall = false;
                     isShooting = true;
                     cameraFollow.selectedOne = selectedItemInstance;
                     shootingSound.Play();
-
                 }
             }
             else if (Input.GetKeyUp(KeyCode.Alpha5))
@@ -157,12 +147,10 @@ public class Player : MonoBehaviour
                 if (keyInterval > 2f)
                 {
                     points--;
-                    isSelectingItem = false;
                     isSelectingBall = false;
                     isShooting = true;
                     cameraFollow.selectedOne = selectedItemInstance;
                     shootingSound.Play();
-
                 }
             }
             else if (Input.GetKeyUp(KeyCode.Alpha6))
@@ -172,12 +160,10 @@ public class Player : MonoBehaviour
                 if (keyInterval > 2f)
                 {
                     points--;
-                    isSelectingItem = false;
                     isSelectingBall = false;
                     isShooting = true;
                     cameraFollow.selectedOne = selectedItemInstance;
                     shootingSound.Play();
-
                 }
             }
         }
@@ -211,12 +197,6 @@ public class Player : MonoBehaviour
             selectedItemPrefab = itemePrefab;
             selectedItemInstance = Instantiate(selectedItemPrefab);
             selectedItemInstance.transform.position = new Vector3(0, 0, startZ);
-        } else
-        {
-            if (!isSelectingItem)
-            {
-                playerChange.EndRound();
-            }
         }
     }
 }

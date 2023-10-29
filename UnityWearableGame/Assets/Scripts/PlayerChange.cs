@@ -52,9 +52,7 @@ public class PlayerChange : MonoBehaviour
         {
             // Start a new round
             currentRound++;
-            currentPlayer.enabled = false;
             currentPlayer = (currentPlayer == playerA) ? playerB : playerA;
-            currentPlayer.enabled = true;
             StartRound();
         }
     }

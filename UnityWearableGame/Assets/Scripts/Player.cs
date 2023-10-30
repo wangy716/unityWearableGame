@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
         {
             if (!isShooting && !isSelectingItem)
             {
-                currentState.toItem = true;
+               // currentState.toItem = true;
                 isSelectingItem = true;
             }
         }

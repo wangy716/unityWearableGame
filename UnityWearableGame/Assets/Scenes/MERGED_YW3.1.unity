@@ -555,7 +555,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &171384257
 GameObject:
@@ -923,10 +923,10 @@ MonoBehaviour:
   score: 0
   startZ: -5.84
   magneticBallPrefab: {fileID: 5014919012199345089, guid: 61765b5e875f52c468e4bda6ceacda2f, type: 3}
-  heavyBallPrefab: {fileID: 6117954488278234307, guid: fd66a04079ddd0c4ca76e9df6f14f116, type: 3}
+  heavyBallPrefab: {fileID: 5271371612195349172, guid: c1aea591a1f6c2548b0830aa7b2d61ad, type: 3}
   plasticBallPrefab: {fileID: 6274497949301336227, guid: 176c9b6174411ff4abfe9244ab6c084b, type: 3}
   cameraFollow: {fileID: 1629185639}
-  currentState: {fileID: 406689564}
+  currentState: {fileID: 0}
   isShooting: 0
   BananaPrefab: {fileID: 311148007083518875, guid: 35015c9d14665a246a357af1901978ae, type: 3}
   GumPrefab: {fileID: 7340607385077862383, guid: 5673a10f0103b8b43b2f6d36232096d6, type: 3}
@@ -1284,7 +1284,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393725027}
   m_CullTransparentMesh: 1
---- !u!1 &406689563
+--- !u!1 &406491037
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1292,8 +1292,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 406689565}
-  - component: {fileID: 406689564}
+  - component: {fileID: 406491039}
+  - component: {fileID: 406491038}
   m_Layer: 0
   m_Name: StateSwitch
   m_TagString: Untagged
@@ -1301,13 +1301,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &406689564
+--- !u!114 &406491038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 406689563}
+  m_GameObject: {fileID: 406491037}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6914686c2dea8504792a6b5b1f6896ba, type: 3}
@@ -1326,20 +1326,20 @@ MonoBehaviour:
   nowPlayerB: 0
   playerChangeNow: 0
   currentPlayer: {fileID: 1228392734}
---- !u!4 &406689565
+--- !u!4 &406491039
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 406689563}
+  m_GameObject: {fileID: 406491037}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 127, y: 58.000015, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &428593590
 GameObject:
@@ -1466,7 +1466,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &498263010
 GameObject:
@@ -1502,10 +1502,10 @@ MonoBehaviour:
   score: 0
   startZ: -5.84
   magneticBallPrefab: {fileID: 5014919012199345089, guid: 61765b5e875f52c468e4bda6ceacda2f, type: 3}
-  heavyBallPrefab: {fileID: 6117954488278234307, guid: fd66a04079ddd0c4ca76e9df6f14f116, type: 3}
+  heavyBallPrefab: {fileID: 5271371612195349172, guid: c1aea591a1f6c2548b0830aa7b2d61ad, type: 3}
   plasticBallPrefab: {fileID: 6274497949301336227, guid: 176c9b6174411ff4abfe9244ab6c084b, type: 3}
   cameraFollow: {fileID: 1629185639}
-  currentState: {fileID: 406689564}
+  currentState: {fileID: 0}
   isShooting: 0
   BananaPrefab: {fileID: 311148007083518875, guid: 35015c9d14665a246a357af1901978ae, type: 3}
   GumPrefab: {fileID: 7340607385077862383, guid: 5673a10f0103b8b43b2f6d36232096d6, type: 3}
@@ -1993,7 +1993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62c8e024414f5349ba9042c3e10a5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateSwitch: {fileID: 406689564}
+  stateSwitch: {fileID: 0}
   ballPrefab: []
   itemPrefab: []
   magneticBallPrefab: {fileID: 5271371612195349172, guid: c1aea591a1f6c2548b0830aa7b2d61ad, type: 3}
@@ -2012,7 +2012,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &672960653
 Rigidbody:
@@ -2210,7 +2210,7 @@ Transform:
   - {fileID: 1945060062252710024}
   - {fileID: 7612252086461954530}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &744139548
 GameObject:
@@ -3384,7 +3384,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1225632958
 GameObject:
@@ -3486,7 +3486,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1228392733
 GameObject:
@@ -3666,7 +3666,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1279787961
 GameObject:
@@ -4095,7 +4095,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 55.1, y: 23.79, z: 0}
 --- !u!1 &1409192156
 GameObject:
@@ -4472,7 +4472,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1497007733
 GameObject:
@@ -4993,7 +4993,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1563094315
 Rigidbody:
@@ -5153,6 +5153,7 @@ GameObject:
   - component: {fileID: 1629185638}
   - component: {fileID: 1629185636}
   - component: {fileID: 1629185639}
+  - component: {fileID: 1629185640}
   m_Layer: 0
   m_Name: OrthogonalCamera
   m_TagString: Untagged
@@ -5240,6 +5241,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoothSpeed: 0.1
   selectedOne: {fileID: 0}
+--- !u!81 &1629185640
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629185635}
+  m_Enabled: 1
 --- !u!1 &1686964039
 GameObject:
   m_ObjectHideFlags: 0
@@ -6211,7 +6220,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2108891088
 MonoBehaviour:

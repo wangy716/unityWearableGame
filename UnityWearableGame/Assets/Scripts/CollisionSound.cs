@@ -8,7 +8,7 @@ public class CollisionSound : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ball"))  // Check if the collided object has the tag "Ball"
+        if (collision.gameObject.CompareTag("sushi"))  // Check if the collided object has the tag "Ball"
         {
             collisionSound.Play();
         }

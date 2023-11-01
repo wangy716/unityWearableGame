@@ -7,9 +7,12 @@ public class PlayerChange : MonoBehaviour
 {
     public Player playerA;
     public Player playerB;
-    public int totalRounds = 5;
-    private int currentRound = 1;
+    public int totalBigRounds = 2;
+    private int currentBigRound = 0;
+    private int currentPlayerRound = 0;
     public Player currentPlayer;
+
+    [SerializeField] TMP_Text playerActive;
 
     [Header("Points")]
     [SerializeField] TMP_Text playerAPoint;
@@ -19,41 +22,55 @@ public class PlayerChange : MonoBehaviour
     {
         currentPlayer = playerA; // Player A starts
         playerA.enabled = true;
+        currentPlayer.points += 5;
+        playerActive.text = "Player A";
         playerB.enabled = false;
-        // Initialize your player objects, their scores, and any other game-related data.
-        // Start the first round
-        StartRound();
     }
 
     private void Update()
     {
-        // Update points
         playerAPoint.text = (playerA.points).ToString();
         playerBPoint.text = (playerB.points).ToString();
     }
 
-    private void StartRound()
-    {
-        //currentPlayer.EndTurn();
-        // Handle player ball selection here
-        // Update UI to indicate ball selection phase
-    }
-
-   
-
     public void EndRound()
     {
-        //currentPlayer.EndTurn();
-        if (currentRound >= totalRounds)
+        Debug.Log("EndRound called");
+
+        Debug.Log("totalBigRounds: " + totalBigRounds);
+
+        if (currentBigRound > totalBigRounds)
         {
             // Game over logic
+            Debug.Log("Game over logic triggered");
+            GameManager.Instance.GameOver();
         }
         else
         {
+            if (currentPlayerRound % 2 == 0)
+            {
+                currentBigRound++;
+            }
+            Debug.Log("currentBigRound: " + currentBigRound);
             // Start a new round
-            currentRound++;
+            currentPlayerRound++;
+            currentPlayer.ResetPlayer();
+            currentPlayer.enabled = false;
+            Debug.Log("currentPlayerRound: " + currentPlayerRound);
             currentPlayer = (currentPlayer == playerA) ? playerB : playerA;
-            StartRound();
+            currentPlayer.enabled = true;
+            currentPlayer.points += 5;
+
+            if (currentPlayer == playerA)
+            {
+                playerActive.text = "Player A";
+            }
+            else
+            {
+                playerActive.text = "Player B";
+            }
+
+           
         }
     }
 }

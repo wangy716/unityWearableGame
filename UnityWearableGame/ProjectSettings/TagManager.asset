@@ -12,15 +12,18 @@ TagManager:
   - ScoringArea1
   - ScoringArea2
   - ScoringArea3
+  - GumMove
+  - TrapMove
+  - sushi
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - OutlineA
   - Water
   - UI
-  - 
-  - 
+  - OutlineB
+  - StartOutline
   - 
   - 
   - 

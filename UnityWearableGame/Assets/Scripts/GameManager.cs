@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
     [Header("UI Elements")]
-    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreTextA;
+    public TextMeshProUGUI scoreTextB;
 
-    private int score;
+    [SerializeField] PlayerChange playerChange;
+
     private int lastScore;
 
     private ReplayRecorder replayRecorder;
@@ -42,15 +45,15 @@ public class GameManager : MonoBehaviour
 
     public void AddScore(int points)
     {
-        lastScore = score;
-        score += points;
+        lastScore = playerChange.currentPlayer.score;
+        playerChange.currentPlayer.score += points;
         UpdateScoreText();
 
         // Check for highlight replay
-        if (score - lastScore > 30)
+        if (playerChange.currentPlayer.score - lastScore > 30)
         {
             // Trigger highlight replay
-            EndGame(score - lastScore);
+            EndGame(playerChange.currentPlayer.score - lastScore);
         }
         else
         {
@@ -61,9 +64,20 @@ public class GameManager : MonoBehaviour
 
     private void UpdateScoreText()
     {
-        if (scoreText != null)
+        if (playerChange.currentPlayer == playerChange.playerA)
         {
-            scoreText.text = "Score: " + score;
+            if (scoreTextA != null)
+            {
+                scoreTextA.text = "Score: " + playerChange.currentPlayer.score;
+            }
+        }
+
+        if (playerChange.currentPlayer == playerChange.playerB)
+        {
+            if (scoreTextB != null)
+            {
+                scoreTextB.text = "Score: " + playerChange.currentPlayer.score;
+            }
         }
     }
 
@@ -85,10 +99,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Call this method to reset the game state
-    public void ResetGameState()
+
+    public void GameOver()
     {
- 
-        // Add any other necessary code to reset the game state here.
+        SceneManager.LoadScene("03End");
+        //if (GameOverManager.Instance != null)
+        //{
+        //    if (playerChange != null)
+        //    {
+        //        GameOverManager.Instance.SetScores(playerChange.playerA.score, playerChange.playerB.score);
+        //    }
+        //    else
+        //    {
+        //        Debug.LogError("PlayerChange instance is null");
+        //    }
+        //}
+        //else
+        //{
+        //    Debug.LogError("GameOverManager instance is null");
+        //}
     }
+
 }

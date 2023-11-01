@@ -17,7 +17,7 @@ public class ReplaySystem : MonoBehaviour
     [SerializeField] private Vector3 orthographicCameraStartPosition;
 
     [Header("Player")]
-    public Player currentPlayer;
+    public PlayerChange playerChange;
 
     private ReplayRecorder replayRecorder;
     private bool isReplaying;
@@ -125,7 +125,7 @@ public class ReplaySystem : MonoBehaviour
 
         isReplaying = false;
 
-        currentPlayer.isShooting = false;
+        playerChange.currentPlayer.isShooting = false;
     }
 
 }

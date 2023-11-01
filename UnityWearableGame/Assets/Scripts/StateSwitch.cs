@@ -56,7 +56,8 @@ public class StateSwitch : MonoBehaviour
         if (toBall)
         {
             currentState.text = "Choose Your Ball";
-            StartCoroutine(ColorChange(itemColor, ballColor));
+            //StartCoroutine(ColorChange(itemColor, ballColor));
+            toBall = false;
             currentBallState = true;
         }
 
@@ -64,7 +65,7 @@ public class StateSwitch : MonoBehaviour
         if (toItem)
         {
             currentState.text = "Choose Your Item";
-            StartCoroutine(ColorChange(ballColor, itemColor));
+            //StartCoroutine(ColorChange(ballColor, itemColor));
             toItem = false;
             currentBallState = false;
         }

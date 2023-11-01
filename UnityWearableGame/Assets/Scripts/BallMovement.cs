@@ -27,7 +27,9 @@ public class BallMovement : MonoBehaviour
     private float mousePressedTime;
     private float mouseReleasedTime;
 
-    
+    private ArduinoConnect arduinoConnect;
+    private float middlePoint = 30f;
+    private float handPosMap;
 
     // Start is called before the first frame update
     protected void Start()
@@ -35,6 +37,8 @@ public class BallMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerGO = GameObject.Find("Players");
         playerNow = playerGO.GetComponent<PlayerChange>().currentPlayer;
+
+        arduinoConnect = GameObject.Find("Arduino").GetComponent<ArduinoConnect>();
     }
 
     // Update is called once per frame
@@ -45,9 +49,15 @@ public class BallMovement : MonoBehaviour
 
         } else
         {
-            mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));
-            mousePos.x = Mathf.Clamp(mousePos.x, leftBorder, rightBorder);
-            transform.position = Vector3.Lerp(transform.position, new Vector3(mousePos.x, transform.position.y, transform.position.z), Time.deltaTime * horizontalSpeed);
+            //mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));
+            //mousePos.x = Mathf.Clamp(mousePos.x, leftBorder, rightBorder);
+            //transform.position = Vector3.Lerp(transform.position, new Vector3(mousePos.x, transform.position.y, transform.position.z), Time.deltaTime * horizontalSpeed);
+
+            handPosMap = arduinoConnect.handPos;
+            //Debug.Log(handPosMap);
+            handPosMap = Mathf.Lerp(leftBorder, rightBorder, (handPosMap - 10f) / 20f);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(handPosMap, transform.position.y, transform.position.z), Time.deltaTime * horizontalSpeed);
+
         }
         
         if(Input.GetMouseButtonDown(0) && !isSliding && playerNow.isShooting)
@@ -66,33 +76,33 @@ public class BallMovement : MonoBehaviour
 
         if(transform.position.y < -1f)
         {
+            playerNow.isShooting = false;
             Destroy(gameObject);
         }
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.CompareTag("Banana"))
+        if (collision.gameObject.CompareTag("Banana"))
         {
-            rb.AddForce(new Vector3(Random.Range(-0.5f, 0.5f), 0, 1) * bananaForce, ForceMode.Impulse);
+            rb.AddForce(new Vector3(Random.Range(-1.5f, 1.5f), 0, 1) * bananaForce, ForceMode.Impulse);
+            Destroy(collision.gameObject);
         }
 
-        if (other.CompareTag("BananaMove"))
-        {
-            float bananaJump = 5f;
-            rb.AddForce(Vector3.up * bananaJump);
-        }
-
-        if (other.CompareTag("Gum"))
+        if (collision.gameObject.CompareTag("Gum"))
         {
             rb.velocity *= gumForce;
+            Destroy(collision.gameObject);
         }
 
-        if (other.CompareTag("Trap"))
+        if (collision.gameObject.CompareTag("Trap"))
         {
+            playerNow.isShooting = false;
+            Destroy(collision.gameObject);
             Destroy(gameObject);
         }
     }
+
 }
     
